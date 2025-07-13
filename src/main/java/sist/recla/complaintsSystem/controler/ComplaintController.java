@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import sist.recla.complaintsSystem.entity.Complaint;
-import sist.recla.complaintsSystem.servive.ComplaintService;
+import sist.recla.complaintsSystem.service.ComplaintService;
 
 @RestController
 @RequestMapping("/complaint")

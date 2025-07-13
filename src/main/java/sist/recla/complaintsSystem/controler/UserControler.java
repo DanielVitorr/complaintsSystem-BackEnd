@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sist.recla.complaintsSystem.entity.User;
-import sist.recla.complaintsSystem.servive.UserService;
+import sist.recla.complaintsSystem.service.UserService;
 
 @RestController
 @RequestMapping("/users")

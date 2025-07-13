@@ -1,4 +1,4 @@
-package sist.recla.complaintsSystem.servive;
+package sist.recla.complaintsSystem.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,7 @@ import sist.recla.complaintsSystem.entity.User;
 import sist.recla.complaintsSystem.repository.UserRepository;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -46,6 +47,7 @@ public class UserService {
     return userRepository.findByCPF(cpf)
       .orElseThrow(() -> new UsernameNotFoundException("Usuário não cadastrado: " + cpf));
   }
+
 
   public List<User> listUsers() {
     return userRepository.findAll();

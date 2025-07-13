@@ -1,4 +1,4 @@
-package sist.recla.complaintsSystem.servive;
+package sist.recla.complaintsSystem.service;
 
 import java.util.List;
 import java.util.UUID;
