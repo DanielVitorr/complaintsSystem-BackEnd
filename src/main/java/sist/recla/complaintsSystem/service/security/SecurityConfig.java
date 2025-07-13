@@ -1,4 +1,4 @@
-package sist.recla.complaintsSystem.service;
+package sist.recla.complaintsSystem.service.security;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -38,6 +38,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
+      .cors()
+      .and()
       .csrf().disable()
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(POST, "/users").permitAll()     // Permite criar usuários

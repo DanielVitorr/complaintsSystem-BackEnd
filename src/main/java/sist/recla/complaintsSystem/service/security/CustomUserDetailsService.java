@@ -1,4 +1,4 @@
-package sist.recla.complaintsSystem.service;
+package sist.recla.complaintsSystem.service.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
