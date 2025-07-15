@@ -11,7 +11,6 @@ import sist.recla.complaintsSystem.entity.User;
 import sist.recla.complaintsSystem.repository.UserRepository;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -29,7 +28,7 @@ public class UserService {
   public UUID createUser(CreateUserDto createUserDto) {
     var entity = new User();
     entity.setUsername(createUserDto.username());
-    entity.setCPF(createUserDto.CPF());
+    entity.setCpf(createUserDto.cpf());
     entity.setPassword(passwordEncoder.encode(createUserDto.password()));
 
     var userSaved = userRepository.save(entity);
@@ -44,8 +43,12 @@ public class UserService {
   public User getAuthenticatedUser() {
     String cpf = SecurityContextHolder.getContext().getAuthentication().getName();
 
-    return userRepository.findByCPF(cpf)
+    return userRepository.findByCpf(cpf)
       .orElseThrow(() -> new UsernameNotFoundException("Usuário não cadastrado: " + cpf));
+  }
+
+  public Optional<User> findByCpf(String cpf) {
+    return userRepository.findByCpf(cpf);
   }
 
 

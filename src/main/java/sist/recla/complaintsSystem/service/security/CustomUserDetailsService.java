@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import sist.recla.complaintsSystem.entity.User;
 import sist.recla.complaintsSystem.repository.UserRepository;
 
 @Service
@@ -18,10 +19,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String cpf) throws UsernameNotFoundException {
-        System.out.println("Autenticando CPF: " + cpf);  // DEBUG: para conferir o que chega aqui
-        return userRepository.findByCPF(cpf)
-            .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com CPF: " + cpf));
+        User user = userRepository.findByCpf(cpf)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado pelo CPF: " + cpf));
+        return user; // retorna diretamente, já implementa UserDetails
     }
-
 
 }

@@ -26,8 +26,8 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID userId;
 
-  @Column(name = "CPF", unique = true)
-  private String CPF;
+  @Column(name = "cpf", unique = true)
+  private String cpf;
 
   @Column(name = "username")
   private String username;
@@ -47,14 +47,14 @@ public class User implements UserDetails {
 
   public User(
       UUID userId, 
-      String CPF, 
+      String cpf, 
       String username, 
       String password, 
       Instant creationTimestamp, 
       Instant updateTimestamp
     ) {
     this.userId = userId;
-    this.CPF = CPF;
+    this.cpf = cpf;
     this.username = username;
     this.password = password;
     this.creationTimestamp = creationTimestamp;
@@ -77,12 +77,12 @@ public class User implements UserDetails {
     this.username = username;
   }
 
-  public String getCPF() {
-    return CPF;
+  public String getCpf() {
+    return cpf;
   }
 
-  public void setCPF(String CPF) {
-    this.CPF = CPF;
+  public void setCpf(String cpf) {
+    this.cpf = cpf;
   }
 
   public String getPassword() {

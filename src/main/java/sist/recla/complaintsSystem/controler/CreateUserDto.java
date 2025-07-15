@@ -8,7 +8,7 @@ public record CreateUserDto(
     String username, 
 
     @NotBlank
-    String CPF,
+    String cpf,
     
     @NotBlank
     String password

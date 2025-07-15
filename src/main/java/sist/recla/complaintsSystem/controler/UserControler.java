@@ -3,7 +3,6 @@ package sist.recla.complaintsSystem.controler;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
 
 import sist.recla.complaintsSystem.entity.User;
 import sist.recla.complaintsSystem.service.UserService;
@@ -25,10 +25,18 @@ public class UserControler {
     this.userService = userService;
   }
 
+  // @PostMapping
+  // public ResponseEntity<User> createUser(@RequestBody CreateUserDto
+  // createUserDto) {
+  // var userId = userService.createUser(createUserDto);
+  // return ResponseEntity.created(URI.create("/users/" + userId)).build();
+  // }
+
   @PostMapping
   public ResponseEntity<User> createUser(@RequestBody CreateUserDto createUserDto) {
     var userId = userService.createUser(createUserDto);
-    return ResponseEntity.created(URI.create("/users/" + userId)).build();
+    var user = userService.getUserById(userId.toString()).orElse(null);
+    return ResponseEntity.created(URI.create("/users/" + userId)).body(user);
   }
 
   @GetMapping("/{userId}")
@@ -45,5 +53,13 @@ public class UserControler {
   public ResponseEntity<List<User>> listUsers() {
     var users = userService.listUsers();
     return ResponseEntity.ok(users);
+  }
+
+  @GetMapping("/me")
+  public ResponseEntity<User> getCurrentUser(Authentication authentication) {
+    String cpf = authentication.getName();
+    return userService.findByCpf(cpf)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
   }
 }

@@ -11,6 +11,6 @@ import sist.recla.complaintsSystem.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>{
 
-  Optional<User> findByCPF(String cpf);
+  Optional<User> findByCpf(String cpf);
 
 }
